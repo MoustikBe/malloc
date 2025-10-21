@@ -15,12 +15,11 @@ Malloc:
 size_t get_units_number(size_t size)
 {    
     size_t units = 0;
-    size_t blockSize = 4096;
 
     if(!size)
         return(0);
     if(size){
-        units = (((blockSize + size - 1) / blockSize));
+        units = (((BLOCK_SIZE + size - 1) / BLOCK_SIZE));
     }
     printf("nb of block -> %zu\n", units);
     return(units);
@@ -54,6 +53,53 @@ bool init_memory()
     return(true);
 }
 
+void *request_memory(size_t size)
+{
+    // -- L'addresse memoire qui sera renvoyer pour malloc -- // 
+    void *addr_malloc;
+    size_t size_needed = size;
+    block *current = g_head;
+    
+    // -- Tant que c'est pas un bloc libre on cherche un bloc libre -- //
+    while(current && current->free == false)
+        current = current->next;
+    // -- Si on n'a plus de block on renvois NULL -- //
+    if(!current) 
+        return(NULL);
+    // -- Si on a trouver un block libre on lui donne l'addresse ici -- //
+    addr_malloc = current->data;
+    
+    // -- Tant que la taille recherche existe et que y'a des block -- //
+    while (size_needed > 0 && current)
+    {
+        // -- Si la taille rechercher est plus petite ou egal a la taille du block actuel -- //
+        if(current->bytes >= size_needed)
+        {
+            // -- On retire les bytes qu'on a besoin -- //
+            current->bytes -= size_needed;
+            // -- Si y'a plus d'espace, on dit que il n'y a plus d'esapce -- //
+            if(current->bytes == size_needed) 
+                current->free = false;
+            size_needed = 0;
+        }
+        else
+        {
+            // -- Sinon on retire les bytes qu'il y'avait de disponible dans le block -- //
+            size_needed -= current->bytes;
+            // -- On le mets a jour en signalant que y'a bien plus de bytes et on le mets a FALSE pour le signaler vide -- //
+            current->bytes = 0;
+            current->free = false;
+            // -- On passe au block suivant -- //
+            current = current->next;
+        }
+    }
+    // -- Verif au cas ou y'a toujours de la size_needed mais plus de block -- //
+    if(!current)
+        return(NULL);
+    //printf("ALLOCATION OF MEMORY FINISH WITH SUCCESS\n");
+    return (addr_malloc);
+}
+
 void *ft_malloc(size_t size)
 {
     if(!size)
@@ -64,25 +110,5 @@ void *ft_malloc(size_t size)
         if(!init_memory())
             return(NULL);
     }
-
-    // Apres on regarde le nombre de memoire que malloc demande. On calcule le nombre de block dont on va avoir besoin avec get_units_number
-    // On creer une variable qui va stocker la memoire de actual_block->memoire_save
-    // On boucle jusqu'a avoir le nombre de block exacte, quand on est sur le dernier block, on regarde combien de memoire on transfert a la variable
-    // On bouge la memoire necessaire et laisse le reste 
-    // On retourne la variable avec la memoire demander
-    return (NULL);
+    return(request_memory(size));
 }
-
-/*
-size_t block_size = 4096;
-size_t num_blocks = sysconf(_SC_PAGESIZE) * 10 / block_size; // combien de blocs dans la zone
-
-block *current = (block *)zone;
-for (size_t i = 0; i < num_blocks; i++) {
-    current->bytes = block_size;
-    current->free = true;
-    current->data = (char *)current + sizeof(block);
-    current->next = (i < num_blocks - 1) ? (block *)((char *)current + sizeof(block) + block_size) : NULL;
-    current = current->next;
-}
-*/
