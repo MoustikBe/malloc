@@ -40,6 +40,33 @@ bool init_memory()
     return(true);
 }
 
+bool extend_memory()
+{
+    void *zone = mmap(NULL, sysconf(_SC_PAGESIZE) * 10, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if(zone == MAP_FAILED) 
+        return(false);
+    size_t number_block = sysconf(_SC_PAGESIZE) * 10 / (sizeof(block) + BLOCK_SIZE);
+    
+    block *current = g_head;
+    while (current->next)
+        current = current->next;
+
+    block *new = (block *) zone;
+    current->next = new;
+    for(size_t i = 0; i < number_block ; i++)
+    {
+        new->bytes = BLOCK_SIZE;
+        new->free = true;
+        new->data = (char *)new + sizeof(block);
+        if(i < number_block - 1)
+            new->next = (block *)((char *)new + sizeof(block) + BLOCK_SIZE);
+        else 
+            new->next = NULL; 
+        new = new->next;
+    }
+    return(true);
+}
+
 void *request_memory(size_t size)
 {
     // -- L'addresse memoire qui sera renvoyer pour malloc -- // 
@@ -51,8 +78,16 @@ void *request_memory(size_t size)
     while(current && current->free == false)
         current = current->next;
     // -- Si on n'a plus de block on renvois NULL -- //
-    if(!current) 
-        return(NULL);
+    if(!current)
+    {
+        if(!extend_memory())
+            return(NULL);
+        current = g_head;
+        while(current && current->free == false)
+            current = current->next;
+        if(!current)
+            return(printf("Deux fois pas assez de memoire\n"), NULL);
+    }
     // -- Si on a trouver un block libre on lui donne l'addresse ici -- //
     addr_malloc = current->data;
     
@@ -65,7 +100,7 @@ void *request_memory(size_t size)
             // -- On retire les bytes qu'on a besoin -- //
             current->bytes -= size_needed;
             // -- Si y'a plus d'espace, on dit que il n'y a plus d'esapce -- //
-            if(current->bytes == size_needed) 
+            if(current->bytes == 0) 
                 current->free = false;
             size_needed = 0;
         }
@@ -82,7 +117,11 @@ void *request_memory(size_t size)
     }
     // -- Verif au cas ou y'a toujours de la size_needed mais plus de block -- //
     if(!current)
-        return(NULL);
+    {
+        if(!extend_memory())
+            return(NULL);
+        return(request_memory(size));
+    }
     //printf("ALLOCATION OF MEMORY FINISH WITH SUCCESS\n");
     return (addr_malloc);
 }

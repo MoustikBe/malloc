@@ -2,8 +2,7 @@
 
 int main(void)
 {
-    char *str = ft_malloc(sizeof(char) * 10);
-    str[5] = '1';
-    printf("%c\n", str[5]);
-    return(0);
+    char *str = malloc(sizeof(char) * 100);
+    str[0] = 'L';
+    printf("-> %c\n", str[0]);
 }
