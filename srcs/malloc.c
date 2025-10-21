@@ -12,19 +12,6 @@ Malloc:
     mmap(NULL, sizeof(char) * 100, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 */
 
-size_t get_units_number(size_t size)
-{    
-    size_t units = 0;
-
-    if(!size)
-        return(0);
-    if(size){
-        units = (((BLOCK_SIZE + size - 1) / BLOCK_SIZE));
-    }
-    printf("nb of block -> %zu\n", units);
-    return(units);
-}
-
 bool init_memory()
 {
     void *zone = mmap(NULL, sysconf(_SC_PAGESIZE) * 10, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
