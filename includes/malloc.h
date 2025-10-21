@@ -1,6 +1,8 @@
 #ifndef MALLOC_H
 # define MALLOC_H
 
+#define BLOCK_SIZE 4096
+
 #include "main.h"
 
 typedef struct block
