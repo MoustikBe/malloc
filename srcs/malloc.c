@@ -182,6 +182,52 @@ void    *large_list(size_t size)
 }
 
 
+/* FREE */
+void ft_free(void   *pointer)
+{
+    block *_block = (block *)pointer - 1;
+    block *next = _block->next;
+    block *current;
+
+    /* CAS LARGE IN PROGRESS */
+    if(_block->bytes > SMALL_SIZE)
+    {
+        if(_block == large_head)
+        {
+            large_head = NULL;
+            munmap(pointer, strlen(pointer));
+            return ;
+        }
+        current = large_head;
+        while (current && current->next != _block)
+            current = current->next;
+        if(current)
+            current = _block->next;
+        munmap(pointer, strlen(pointer));
+        return ;
+    }
+    /* CAS LARGE IN PROGRESS */
+    
+    _block->free = true;
+    if(next && next->free)
+    {
+        _block->bytes += sizeof(block) + next->bytes;
+        _block->next = next->next;
+    }
+
+    current = tiny_head;
+    while (current && current->next != _block)
+        current = current->next;
+    if(current && current->free)
+    {
+        current->bytes += sizeof(block) + _block->bytes;
+        current->next = _block->next;
+    }
+
+    return ;
+}
+/* FREE */
+
 void *ft_malloc(size_t size)
 {   
     void *zone;
