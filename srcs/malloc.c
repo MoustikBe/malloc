@@ -101,7 +101,7 @@ void *give_addr(block *_block, size_t size, int type)
 
     while(current)
     {
-        if(size <= current->bytes)
+        if(current->free && size <= current->bytes)
         {
             addr_malloc = (void *)(current + 1);
             if(size == current->bytes)
@@ -127,7 +127,7 @@ void *give_addr(block *_block, size_t size, int type)
     }
     if(!addr_malloc)
     {
-        if(!extend_memory(_block, type))
+        if(!extend_memory(&_block, type))
             return (NULL);
         addr_malloc = give_addr(_block, size, type);
     }
@@ -172,7 +172,7 @@ void    *request_mem(size_t size)
             while(current->next)
                 current = current->next;
             last = (block *)zone;
-            last->free = true;
+            last->free = false;
             last->bytes = size;
             last->next = NULL;
             current->next = last;
@@ -182,11 +182,11 @@ void    *request_mem(size_t size)
         {
             large_head = (block *)zone;
             large_head->bytes = size;
-            large_head->free = true;
+            large_head->free = false;
             large_head->next = NULL;
             last = large_head;
         }
-        return((void *)last + 1);
+        return((void *)((char *)last + sizeof(block)));
     }
 }
 

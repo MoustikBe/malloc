@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    char *str = malloc(sizeof(char));
+    char *str = ft_malloc(sizeof(char));
     str = "FAILED";
     printf("-> %c\n", str[5]);
 }
