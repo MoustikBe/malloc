@@ -1,7 +1,8 @@
 #ifndef MALLOC_H
 # define MALLOC_H
 
-#define BLOCK_SIZE 4096
+#define TINY_SIZE 512
+#define SMALL_SIZE 2048
 
 #include "main.h"
 
@@ -9,8 +10,8 @@ typedef struct block
 {
     size_t  bytes;
     bool    free;
-    struct block   *next;
     void    *data;
+    struct block   *next;
 } block;
 
 
