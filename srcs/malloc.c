@@ -64,6 +64,8 @@ bool extend_memory(block **_block, int type)
     }
     if(zone == MAP_FAILED)
         return false;
+    if(!*_block)
+        return(false);
     block *current = *_block;
     
     while (current->next)
