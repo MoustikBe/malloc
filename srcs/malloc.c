@@ -65,7 +65,7 @@ bool extend_memory(block **_block, int type)
     if(zone == MAP_FAILED)
         return false;
     if(!*_block)
-        create_list(zone, type); // -- update not sure -- //
+        *_block = create_list(zone, type);
     block *current = *_block;
     
     while (current->next)
@@ -94,10 +94,10 @@ bool extend_memory(block **_block, int type)
     return(true);
 }
 
-void *give_addr(block *_block, size_t size, int type)
+void *give_addr(block **_block, size_t size, int type)
 {
     void *addr_malloc = NULL;
-    block *current = _block;
+    block *current = *_block;
 
     while(current)
     {
@@ -134,65 +134,64 @@ void *give_addr(block *_block, size_t size, int type)
     return (addr_malloc);
 }
 
-void    *request_mem(size_t size)
+void    *prepare_list(block **_block, size_t size, int type)
 {
     void *zone;
-    if(size <= TINY_SIZE)
+
+    if(!_block)
     {
-        if(!tiny_head)
-        {
+        if(type == 1)
             zone = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-            if(zone == MAP_FAILED)
-                return(NULL);
-            tiny_head = create_list(zone, 1);
-        }
-        return(give_addr(tiny_head, size, 1));
-        
-    }
-    else if(size > TINY_SIZE && size <= SMALL_SIZE)
-    {
-        if(!small_head)
-        {
+        else
             zone = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-            if(zone == MAP_FAILED)
-                return(NULL);
-            small_head = create_list(zone, 2);
-        }
-        return(give_addr(small_head, size, 2));
-    }
-    else
-    {
-        zone = mmap(NULL, size + sizeof(block), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
         if(zone == MAP_FAILED)
-            return (NULL);
-        block *last;
-        if(large_head)
-        {
-            block *current = large_head;
-            while(current->next)
-                current = current->next;
-            last = (block *)zone;
-            last->free = false;
-            last->bytes = size;
-            last->next = NULL;
-            current->next = last;
-            
-        }
-        else 
-        {
-            large_head = (block *)zone;
-            large_head->bytes = size;
-            large_head->free = false;
-            large_head->next = NULL;
-            last = large_head;
-        }
-        return((void *)((char *)last + sizeof(block)));
+            return(NULL);
+        _block = create_list(zone, type);
     }
+    return(give_addr(_block, size, type));
 }
 
-void *ft_malloc(size_t size)
+void    *large_list(size_t size)
 {
+    void *zone;
+
+    zone = mmap(NULL, size + sizeof(block), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if(zone == MAP_FAILED)
+        return (NULL);
+    block *last;
+    if(large_head)
+    {
+        block *current = large_head;
+        while(current->next)
+            current = current->next;
+        last = (block *)zone;
+        last->free = false;
+        last->bytes = size;
+        last->next = NULL;
+        current->next = last;
+    }
+    else 
+    {
+        large_head = (block *)zone;
+        large_head->bytes = size;
+        large_head->free = false;
+        large_head->next = NULL;
+        last = large_head;
+    }
+    return((void *)((char *)last + sizeof(block)));
+}
+
+
+void *ft_malloc(size_t size)
+{   
+    void *zone;
     if(!size)
         return(NULL);
-    return(request_mem(size));
+
+    if(size <= TINY_SIZE)
+        return(prepare_list(&tiny_head, size, 1));
+    else if(size > TINY_SIZE && size <= SMALL_SIZE)
+        return(prepare_list(&small_head, size, 2));
+    else
+        return(large_list(size));
 }
