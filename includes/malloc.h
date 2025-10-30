@@ -4,6 +4,9 @@
 #define TINY_SIZE 512
 #define SMALL_SIZE 2048
 
+#define TINY_ZONE (TINY_SIZE + sizeof(block)) * 100
+#define SMALL_ZONE (SMALL_SIZE + sizeof(block)) * 100
+
 #include "main.h"
 
 typedef struct block
