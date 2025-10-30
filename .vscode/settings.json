@@ -2,6 +2,7 @@
     "files.associations": {
         "main.h": "c",
         "mman.h": "c",
-        "malloc.h": "c"
+        "malloc.h": "c",
+        "free.h": "c"
     }
 }
