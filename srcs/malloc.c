@@ -132,29 +132,31 @@ Malloc:
 static block *tiny_head = NULL;
 static block *small_head = NULL;
 
-bool request_TINY_list(size_t size)
+void    *request_mem(size_t size)
 {
-
-}
-
-bool init_memory(size_t size)
-{
-    if(size > TINY_SIZE)
-        if(!request_TINY_list(size))
-            return(false);
-    else if(size > TINY_SIZE && size < SMALL_SIZE)
-        if(!request_SMALL_list())
-            return(false);
+    if(size <= TINY_SIZE)
+    {
+        printf("Allocate memory for TINY SIZE");
+    }
+    else if(size > TINY_SIZE && size <= SMALL_SIZE)
+    {
+        printf("Allocate memory for SMALL SIZE");
+    }
     else
-        if(!request_EXACT_mem())
-            return(false);
-    return(true);
+    {
+        void *zone = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        if(zone == MAP_FAILED)
+            return (NULL);
+        return(zone);
+    }
 }
 
 void *ft_malloc(size_t size)
 {
     if(!size)
         return(NULL);
-    if(!init_memory)
+    void *ptr_malloc = request_mem(size);
+    if(!ptr_malloc)
         return(NULL);
+    return(ptr_malloc);
 }

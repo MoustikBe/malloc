@@ -10,7 +10,6 @@ typedef struct block
 {
     size_t  bytes;
     bool    free;
-    void    *data;
     struct block   *next;
 } block;
 
