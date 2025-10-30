@@ -3,6 +3,7 @@
         "main.h": "c",
         "mman.h": "c",
         "malloc.h": "c",
-        "free.h": "c"
+        "free.h": "c",
+        "stdbool.h": "c"
     }
 }
