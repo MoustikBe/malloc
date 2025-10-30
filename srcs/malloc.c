@@ -132,6 +132,8 @@ Malloc:
 static block *tiny_head = NULL;
 static block *small_head = NULL;
 
+static block *large_head = NULL;
+
 void    *request_mem(size_t size)
 {
     if(size <= TINY_SIZE)
@@ -144,10 +146,14 @@ void    *request_mem(size_t size)
     }
     else
     {
-        void *zone = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        void *zone = mmap(NULL, size + sizeof(block), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
         if(zone == MAP_FAILED)
             return (NULL);
-        return(zone);
+        block *large_head = (block *)zone;
+        large_head->bytes = size;
+        large_head->free = true;
+        large_head->next = NULL;
+        return((void *)large_head + 1);
     }
 }
 
