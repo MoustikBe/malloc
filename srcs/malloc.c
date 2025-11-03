@@ -185,6 +185,8 @@ void    *large_list(size_t size)
 /* FREE */
 void ft_free(void   *pointer)
 {
+    if(!pointer)
+        return;
     block *_block = (block *)pointer - 1;
     block *next = _block->next;
     block *current;
@@ -193,17 +195,16 @@ void ft_free(void   *pointer)
     if(_block->bytes > SMALL_SIZE)
     {
         if(_block == large_head)
+            large_head = large_head->next;
+        else 
         {
-            large_head = NULL;
-            munmap(pointer, strlen(pointer));
-            return ;
+            current = large_head;
+            while (current && current->next != _block)
+                current = current->next;
+            if(current)
+                current->next = _block->next;
         }
-        current = large_head;
-        while (current && current->next != _block)
-            current = current->next;
-        if(current)
-            current = _block->next;
-        munmap(pointer, strlen(pointer));
+        munmap(_block, sizeof(block) + _block->bytes);
         return ;
     }
     /* CAS LARGE IN PROGRESS */
@@ -215,7 +216,11 @@ void ft_free(void   *pointer)
         _block->next = next->next;
     }
 
-    current = tiny_head;
+    if(_block->bytes <= TINY_SIZE)
+        current = tiny_head;
+    else
+        current = small_head;
+
     while (current && current->next != _block)
         current = current->next;
     if(current && current->free)
@@ -223,7 +228,6 @@ void ft_free(void   *pointer)
         current->bytes += sizeof(block) + _block->bytes;
         current->next = _block->next;
     }
-
     return ;
 }
 /* FREE */
