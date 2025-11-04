@@ -199,7 +199,7 @@ void    *large_list(size_t size)
 /* FREE */
 void ft_free(void   *pointer)
 {
-    if(!pointer)
+    if(!pointer || (block *)pointer - 1) // WTF ? Pq cette vrif 
         return;
     block *_block = (block *)pointer - 1;
     block *next = _block->next;
@@ -221,9 +221,11 @@ void ft_free(void   *pointer)
         return ;
     }
 
+    
     _block->free = true;
     if(next && next->free)
     {
+        printf("ERROR_1\n");
         _block->bytes += sizeof(block) + next->bytes;
         _block->next = next->next;
     }
@@ -237,9 +239,11 @@ void ft_free(void   *pointer)
         current = current->next;
     if(current && current->free)
     {
+        printf("ERROR_2\n");
         current->bytes += sizeof(block) + _block->bytes;
         current->next = _block->next;
     }
+    printf("ERROR 3\n");
     return ;
 }
 /* FREE */

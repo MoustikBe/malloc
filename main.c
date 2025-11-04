@@ -90,16 +90,17 @@ int main(void)
     ft_free(c);
     ft_free(d);
 
-    
     print_header("Test de stress aléatoire");
 
     void *pool[1000] = {0};
     for (int i = 0; i < 5000; i++) {
         int idx = rand() % 1000;
         if (pool[idx]) {
+            printf("->%d\n", idx);
             ft_free(pool[idx]);
             pool[idx] = NULL;
         } else {
+            printf("->nb->%d\n", idx);
             size_t size = (rand() % 256) + 1;
             pool[idx] = ft_malloc(size);
             if (pool[idx])
@@ -110,7 +111,6 @@ int main(void)
         if (pool[i])
             ft_free(pool[i]);
     printf("[OK] Stress test terminé sans crash\n");
-    
 
     print_header("Test double free (comportement attendu : sécurisé ou erreur contrôlée)");
 
@@ -120,7 +120,7 @@ int main(void)
     ft_free(df); // Doit être ignoré ou provoquer une erreur gérée
     printf("Tentative double free terminée\n");
 
-    /*
+    
     print_header("Test realloc sur pointeur invalide");
 
     int fake;
@@ -132,6 +132,6 @@ int main(void)
         printf("[OK] ft_realloc a détecté un pointeur invalide\n");
 
     print_header("Tous les tests terminés ✅");
-    */
+
     return 0;
 }
