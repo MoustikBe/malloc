@@ -141,7 +141,7 @@ void *give_addr(block **_block, size_t size, int type)
     }
     if(!addr_malloc)
     {
-        if(!extend_memory(&_block, type))
+        if(!extend_memory(_block, type))
             return (NULL);
         addr_malloc = give_addr(_block, size, type);
     }
@@ -160,7 +160,7 @@ void    *prepare_list(block **_block, size_t size, int type)
             zone = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
         if(zone == MAP_FAILED)
             return(NULL);
-        _block = create_list(zone, type);
+        *_block = create_list(zone, type);
     }
     return(give_addr(_block, size, type));
 }
@@ -205,7 +205,6 @@ void ft_free(void   *pointer)
     block *next = _block->next;
     block *current;
 
-    /* CAS LARGE IN PROGRESS */
     if(_block->bytes > SMALL_SIZE)
     {
         if(_block == large_head)
@@ -221,8 +220,7 @@ void ft_free(void   *pointer)
         munmap(_block, sizeof(block) + _block->bytes);
         return ;
     }
-    /* CAS LARGE IN PROGRESS */
-    
+
     _block->free = true;
     if(next && next->free)
     {
