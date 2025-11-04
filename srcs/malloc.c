@@ -15,6 +15,21 @@ static block *tiny_head = NULL;
 static block *small_head = NULL;
 static block *large_head = NULL;
 
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	count;
+
+	count = 0;
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	while (count < n)
+	{
+		((unsigned char *)dst)[count] = ((unsigned char *)src)[count];
+		count++;
+	}
+	return (dst);
+}
+
 block   *create_list(void *zone, int type)
 {
     block *head = (block *) zone;
@@ -118,7 +133,6 @@ void *give_addr(block **_block, size_t size, int type)
 
                 current->next = new;
                 current->bytes = size;
-                current->free = false;
             }
             break;
         }
@@ -231,6 +245,43 @@ void ft_free(void   *pointer)
     return ;
 }
 /* FREE */
+
+void *ft_realloc(void *ptr, size_t size)
+{
+    void *addr_malloc;
+    block *_block = (block *)ptr - 1;
+    if(!ptr)
+        return(ft_malloc(size));
+    else if(size == 0)
+        return(ft_free(ptr), NULL);
+    else if(size <= _block->bytes + sizeof(block))
+        return(ptr);
+
+    block *next = _block->next;
+    if(next && next->free && (_block->bytes + next->bytes + sizeof(block) >= size))
+    {
+        _block->bytes += next->bytes + sizeof(block);
+        _block->next = next->next;
+        if(size +sizeof(block) < _block->bytes)
+        {
+            block *new = (block *)((char *)(_block + 1) + size);
+            new->bytes = _block->bytes - size - sizeof(block);
+            new->free = true;
+            new->next = _block->next;
+
+            _block->next = new;
+            _block->bytes = size;
+        }
+        _block->free = false;
+        return((void *)(_block + 1));
+    }
+    addr_malloc = ft_malloc(size);
+    if(!addr_malloc)
+        return(NULL);
+    ft_memcpy(addr_malloc, ptr, size);
+    ft_free(ptr);
+    return(addr_malloc);
+}
 
 void *ft_malloc(size_t size)
 {   
