@@ -136,6 +136,7 @@ void *give_addr(block **_block, size_t size, int type)
 
                 current->next = new;
                 current->bytes = size;
+                current->free = false;
             }
             break;
         }
