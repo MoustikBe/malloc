@@ -96,11 +96,9 @@ int main(void)
     for (int i = 0; i < 5000; i++) {
         int idx = rand() % 1000;
         if (pool[idx]) {
-            printf("->%d\n", idx);
             ft_free(pool[idx]);
             pool[idx] = NULL;
         } else {
-            printf("->nb->%d\n", idx);
             size_t size = (rand() % 256) + 1;
             pool[idx] = ft_malloc(size);
             if (pool[idx])

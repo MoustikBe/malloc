@@ -79,8 +79,10 @@ bool extend_memory(block **_block, int type)
     }
     if(zone == MAP_FAILED)
         return false;
-    if(!*_block)
+    if(!*_block) {
         *_block = create_list(zone, type);
+        return (true);
+    }
     block *current = *_block;
     
     while (current->next)
@@ -121,9 +123,10 @@ void *give_addr(block **_block, size_t size, int type)
             addr_malloc = (void *)(current + 1);
             if(size == current->bytes)
             {
-                current->bytes = 0;
                 current->free = false;
+                current->bytes = size;
             }
+                
             else 
             {
                 block *new = (block *)((char *)(current + 1) + size);
@@ -152,7 +155,7 @@ void    *prepare_list(block **_block, size_t size, int type)
 {
     void *zone;
 
-    if(!_block)
+    if(!*_block)
     {
         if(type == 1)
             zone = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
@@ -199,7 +202,7 @@ void    *large_list(size_t size)
 /* FREE */
 void ft_free(void   *pointer)
 {
-    if(!pointer || (block *)pointer - 1) // WTF ? Pq cette vrif 
+    if(!pointer)
         return;
     block *_block = (block *)pointer - 1;
     block *next = _block->next;
