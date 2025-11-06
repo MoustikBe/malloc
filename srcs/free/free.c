@@ -6,25 +6,17 @@
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:09:17 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/06 12:51:20 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:06:34 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/malloc.h"
-
-/*
-    free(void *pointer)
-    In case of error this function should return directly
-    It should handle the case of memory already free (double free)
-    It should also handle the case of "fake" memory allocated 
-*/
 
 void ft_free(void   *pointer)
 {
     if(!pointer)
         return;
     block *_block = (block *)pointer - 1;
-    //printf("address -> %p, bytes -> %zu, free ? %d\n", &_block, _block->bytes, _block->free);
     block *next = _block->next;
     block *current;
 

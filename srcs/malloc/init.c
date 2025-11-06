@@ -6,12 +6,13 @@
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:23:50 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/06 12:29:31 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:03:04 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/malloc.h"
 
+/* Function that create the list, in case is the first time ft_malloc is used. */
 block   *create_list(void *zone, int type)
 {
     block *head = (block *) zone;
@@ -44,6 +45,7 @@ block   *create_list(void *zone, int type)
     return(head);
 }
 
+/* Function that ask the system to give us [ZONE] of memory, [ZONE] will be used after to create the list that match with [SIZE] requested by ft_malloc. */
 void    *prepare_list(block **_block, size_t size, int type)
 {
     void *zone;
@@ -61,6 +63,7 @@ void    *prepare_list(block **_block, size_t size, int type)
     return(give_addr(_block, size, type));
 }
 
+/* Function that handle the specific case of large_list. large allocation use mmap to allocate the exact [SIZE] in [ZONE] + (metadata) for the list. */
 void    *large_list(size_t size)
 {
     void *zone;

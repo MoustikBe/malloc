@@ -6,12 +6,13 @@
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:40:24 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/06 12:47:12 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:05:28 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/malloc.h"
 
+/* Just a function to improved the readability of the code (extension of extend_memory). */
 void alloc_extension(block **_block, int type, void *zone, size_t nb_block)
 {
     block *current = *_block;
@@ -41,6 +42,7 @@ void alloc_extension(block **_block, int type, void *zone, size_t nb_block)
     }
 }
 
+/* Function that extend the memory if give_addr function dosen't find enought memory in the list. */
 bool extend_memory(block **_block, int type)
 {
     void *zone;
@@ -67,6 +69,7 @@ bool extend_memory(block **_block, int type)
     return(true);
 }
 
+/* Function that find the memory address in the list of block to return it to ft_malloc. */
 void *give_addr(block **_block, size_t size, int type)
 {
     void    *addr_malloc = NULL;
