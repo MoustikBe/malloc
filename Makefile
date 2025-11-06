@@ -1,34 +1,43 @@
-NAME    = malloc_T-T
-C	    = cc
-CFLAG   = -Wall -Werror -Wextra
-LFLAG 	= -fsanitize=address -g3
-RM      = rm -rf
-OBJDIR  = obj
-SOURCES = main.c \
-		  srcs/malloc/malloc.c srcs/malloc/init.c srcs/malloc/alloc.c \
-		  srcs/free/free.c srcs/realloc/realloc.c
+ifeq ($(HOSTTYPE),)
+	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
+endif
 
-OBJECTS = $(SOURCES:%.c=$(OBJDIR)/%.o)
+NAME	= libft_malloc_$(HOSTTYPE).so
+LINK	= libft_malloc.so
+
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -fPIC
+LFLAGS	= -shared -g3
+RM		= rm -rf
+
+OBJDIR	= obj
+SOURCES	= srcs/malloc/malloc.c srcs/malloc/init.c srcs/malloc/alloc.c \
+		  srcs/free/free.c srcs/realloc/realloc.c
+OBJECTS	= $(SOURCES:%.c=$(OBJDIR)/%.o)
+
+all: $(NAME) link
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(C) $(LFLAG) $(CFLAG) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled $<"
 
 $(NAME): $(OBJECTS)
-	@$(C) $(LFLAG) $(OBJECTS) -o $(NAME)
-	@echo "Compiled V"
-	@echo "\nExecute the program with : ./malloc_T-T"
+	@$(CC) $(LFLAGS) $(OBJECTS) -o $(NAME)
+	@echo "✅ Created $(NAME)"
 
-clean : 
-	@$(RM) -r $(OBJDIR)  > /dev/null 2>&1
+link:
+	@ln -sf $(NAME) $(LINK)
+	@echo "🔗 Created symbolic link: $(LINK) -> $(NAME)"
 
-fclean : clean
-	@$(RM) -r $(OBJDIR)  > /dev/null 2>&1
-	@$(RM) $(NAME)
+clean:
+	@$(RM) $(OBJDIR)
+	@echo "🧹 Object files removed"
 
-
-all : $(NAME)
+fclean: clean
+	@$(RM) $(NAME) $(LINK)
+	@echo "🗑️  Removed binary and link"
 
 re: fclean all
 
-.PHONY: clean all re fclean% 
+.PHONY: all clean fclean re link

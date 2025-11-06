@@ -24,13 +24,13 @@ int main(void)
 
     print_header("Test basique d'allocation et libération");
 
-    char *str = (char *)ft_malloc(20);
+    char *str = (char *)malloc(20);
     if (!str)
-        printf("[ERROR] ft_malloc a renvoyé NULL\n");
+        printf("[ERROR] malloc a renvoyé NULL\n");
     else {
         strcpy(str, "Hello world!");
         printf("Contenu: %s\n", str);
-        ft_free(str);
+        free(str);
         printf("[OK] Allocation + free simples\n");
     }
 
@@ -38,7 +38,7 @@ int main(void)
 
     void *ptrs[10];
     for (int i = 0; i < 10; i++) {
-        ptrs[i] = ft_malloc(50 + i * 10);
+        ptrs[i] = malloc(50 + i * 10);
         if (!ptrs[i]) {
             printf("[ERROR] Allocation %d a échoué\n", i);
             return 1;
@@ -48,47 +48,47 @@ int main(void)
     printf("[OK] 10 allocations successives\n");
 
     for (int i = 0; i < 10; i += 2)
-        ft_free(ptrs[i]);
+        free(ptrs[i]);
     printf("[OK] Libération de la moitié des blocs\n");
 
     for (int i = 1; i < 10; i += 2)
-        ft_free(ptrs[i]);
+        free(ptrs[i]);
     printf("[OK] Libération du reste\n");
 
     print_header("Test de réallocation");
 
-    char *data = ft_malloc(10);
+    char *data = malloc(10);
     strcpy(data, "abcde");
-    data = ft_realloc(data, 20);
+    data = realloc(data, 20);
     strcat(data, "12345");
     printf("Après realloc: %s\n", data);
     check_memory_content("Realloc conserve les données", data, "abcde12345", 10);
-    ft_free(data);
+    free(data);
 
     print_header("Test de realloc sur NULL et taille = 0");
 
-    char *null_realloc = ft_realloc(NULL, 30);
+    char *null_realloc = realloc(NULL, 30);
     if (null_realloc)
-        printf("[OK] ft_realloc(NULL, size) agit comme malloc\n");
-    ft_free(null_realloc);
+        printf("[OK] realloc(NULL, size) agit comme malloc\n");
+    free(null_realloc);
 
-    char *small = ft_malloc(10);
-    small = ft_realloc(small, 0);
+    char *small = malloc(10);
+    small = realloc(small, 0);
     if (small == NULL)
-        printf("[OK] ft_realloc(ptr, 0) renvoie NULL et libère\n");
+        printf("[OK] realloc(ptr, 0) renvoie NULL et libère\n");
 
     print_header("Test de fragmentation et réutilisation de blocs");
 
-    void *a = ft_malloc(100);
-    void *b = ft_malloc(200);
-    void *c = ft_malloc(50);
-    ft_free(b); // Libère un bloc au milieu
-    void *d = ft_malloc(180); // Doit réutiliser le bloc de b si ta gestion est efficace
+    void *a = malloc(100);
+    void *b = malloc(200);
+    void *c = malloc(50);
+    free(b); // Libère un bloc au milieu
+    void *d = malloc(180); // Doit réutiliser le bloc de b si ta gestion est efficace
     if (d)
         printf("[OK] Bloc libre réutilisé (fragmentation test)\n");
-    ft_free(a);
-    ft_free(c);
-    ft_free(d);
+    free(a);
+    free(c);
+    free(d);
 
     print_header("Test de stress aléatoire");
 
@@ -96,26 +96,26 @@ int main(void)
     for (int i = 0; i < 5000; i++) {
         int idx = rand() % 1000;
         if (pool[idx]) {
-            ft_free(pool[idx]);
+            free(pool[idx]);
             pool[idx] = NULL;
         } else {
             size_t size = (rand() % 256) + 1;
-            pool[idx] = ft_malloc(size);
+            pool[idx] = malloc(size);
             if (pool[idx])
                 memset(pool[idx], 0xAA, size);
         }
     }
     for (int i = 0; i < 1000; i++)
         if (pool[i])
-            ft_free(pool[i]);
+            free(pool[i]);
     printf("[OK] Stress test terminé sans crash\n");
 
     print_header("Test double free (comportement attendu : sécurisé ou erreur contrôlée)");
 
-    void *df = ft_malloc(42);
-    ft_free(df);
+    void *df = malloc(42);
+    free(df);
     printf("Libération une fois : OK\n");
-    ft_free(df); // Doit être ignoré ou provoquer une erreur gérée
+    free(df); // Doit être ignoré ou provoquer une erreur gérée
     printf("Tentative double free terminée\n");
 
     
@@ -123,11 +123,11 @@ int main(void)
 
     int fake;
     void *invalid = &fake;
-    void *res = ft_realloc(invalid, 50);
+    void *res = realloc(invalid, 50);
     if (res)
-        printf("[WARNING] ft_realloc a accepté un pointeur invalide !\n");
+        printf("[WARNING] realloc a accepté un pointeur invalide !\n");
     else
-        printf("[OK] ft_realloc a détecté un pointeur invalide\n");
+        printf("[OK] realloc a détecté un pointeur invalide\n");
 
     print_header("Tous les tests terminés ✅");
 

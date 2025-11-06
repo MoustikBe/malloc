@@ -69,7 +69,7 @@ bool extend_memory(block **_block, int type)
     return(true);
 }
 
-/* Function that find the memory address in the list of block to return it to ft_malloc. */
+/* Function that find the memory address in the list of block to return it to malloc. */
 void *give_addr(block **_block, size_t size, int type)
 {
     void    *addr_malloc = NULL;

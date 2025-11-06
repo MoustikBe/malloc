@@ -14,7 +14,7 @@
 
 malloc_list l_malloc = {NULL, NULL, NULL};
 
-void *ft_malloc(size_t size)
+void *malloc(size_t size)
 {   
     if(!size)
         return(NULL);

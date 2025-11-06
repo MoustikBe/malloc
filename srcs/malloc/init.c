@@ -12,7 +12,7 @@
 
 #include "../../includes/malloc.h"
 
-/* Function that create the list, in case is the first time ft_malloc is used. */
+/* Function that create the list, in case is the first time malloc is used. */
 block   *create_list(void *zone, int type)
 {
     block *head = (block *) zone;
@@ -45,7 +45,7 @@ block   *create_list(void *zone, int type)
     return(head);
 }
 
-/* Function that ask the system to give us [ZONE] of memory, [ZONE] will be used after to create the list that match with [SIZE] requested by ft_malloc. */
+/* Function that ask the system to give us [ZONE] of memory, [ZONE] will be used after to create the list that match with [SIZE] requested by malloc. */
 void    *prepare_list(block **_block, size_t size, int type)
 {
     void *zone;

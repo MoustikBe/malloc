@@ -27,14 +27,14 @@ extern malloc_list l_malloc;
 
 /* MALLOC */
 bool	extend_memory(block **_block, int type);
-void	*ft_malloc(size_t size);
+void	*malloc(size_t size);
 void	*prepare_list(block **_block, size_t size, int type);
 void	*large_list(size_t size);
 void	*give_addr(block **_block, size_t size, int type);
 block	*create_list(void *zone, int type);
 /* REALLOC */
-void	*ft_realloc(void *ptr, size_t size);
+void	*realloc(void *ptr, size_t size);
 /* FREE */
-void	ft_free(void  *pointer);
+void	free(void  *pointer);
 
 #endif

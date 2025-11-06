@@ -12,7 +12,7 @@
 
 #include "../../includes/malloc.h"
 
-void ft_free(void   *pointer)
+void free(void   *pointer)
 {
     if(!pointer)
         return;

@@ -27,7 +27,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-/* Function that check if the memory allocated is from this ft_malloc implementation. */
+/* Function that check if the memory allocated is from this malloc implementation. */
 bool verif_in_list(void *ptr)
 {
     block *current;
@@ -50,16 +50,16 @@ bool verif_in_list(void *ptr)
     return(false);
 }
 
-void *ft_realloc(void *ptr, size_t size)
+void *realloc(void *ptr, size_t size)
 {
     void *addr_malloc;
     block *_block = (block *)ptr - 1;
     if(!ptr)
-        return(ft_malloc(size));
+        return(malloc(size));
     else if(!verif_in_list(ptr))
         return(NULL);
     else if(size == 0)
-        return(ft_free(ptr), NULL);
+        return(free(ptr), NULL);
     else if(size <= _block->bytes + sizeof(block))
         return(ptr);
 
@@ -81,10 +81,10 @@ void *ft_realloc(void *ptr, size_t size)
         _block->free = false;
         return((void *)(_block + 1));
     }
-    addr_malloc = ft_malloc(size);
+    addr_malloc = malloc(size);
     if(!addr_malloc)
         return(NULL);
     ft_memcpy(addr_malloc, ptr, size);
-    ft_free(ptr);
+    free(ptr);
     return(addr_malloc);
 }
