@@ -120,13 +120,13 @@ void *give_addr(block **_block, size_t size, int type)
     {
         if(current->free && size <= current->bytes)
         {
+            size_t remaining = current->bytes - size;
             addr_malloc = (void *)(current + 1);
-            if(size == current->bytes)
+            if(size == current->bytes || remaining <= sizeof(block))
             {
                 current->free = false;
                 current->bytes = size;
             }
-                
             else 
             {
                 block *new = (block *)((char *)(current + 1) + size);
@@ -206,6 +206,7 @@ void ft_free(void   *pointer)
     if(!pointer)
         return;
     block *_block = (block *)pointer - 1;
+    //printf("address -> %p, bytes -> %zu, free ? %d\n", &_block, _block->bytes, _block->free);
     block *next = _block->next;
     block *current;
 
@@ -229,7 +230,6 @@ void ft_free(void   *pointer)
     _block->free = true;
     if(next && next->free)
     {
-        printf("ERROR_1\n");
         _block->bytes += sizeof(block) + next->bytes;
         _block->next = next->next;
     }
@@ -243,14 +243,34 @@ void ft_free(void   *pointer)
         current = current->next;
     if(current && current->free)
     {
-        printf("ERROR_2\n");
         current->bytes += sizeof(block) + _block->bytes;
         current->next = _block->next;
     }
-    printf("ERROR 3\n");
     return ;
 }
 /* FREE */
+
+bool verif_in_list(void *ptr)
+{
+    block *current;
+
+    for(int i = 0; i < 3; i++)
+    {
+        if(i == 0)
+            current = tiny_head;
+        else if(i == 1)
+            current = small_head;
+        else
+            current = large_head;
+        while(current)
+        {
+            if((void *)(current + 1) == ptr)
+                return(true);
+            current = current->next;
+        }
+    }
+    return(false);
+}
 
 void *ft_realloc(void *ptr, size_t size)
 {
@@ -258,6 +278,8 @@ void *ft_realloc(void *ptr, size_t size)
     block *_block = (block *)ptr - 1;
     if(!ptr)
         return(ft_malloc(size));
+    else if(!verif_in_list(ptr))
+        return(NULL);
     else if(size == 0)
         return(ft_free(ptr), NULL);
     else if(size <= _block->bytes + sizeof(block))
