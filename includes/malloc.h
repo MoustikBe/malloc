@@ -23,7 +23,7 @@ typedef struct malloc_list
     block *large_head;
 } malloc_list;
 
-static malloc_list l_malloc = {NULL, NULL, NULL};
+extern malloc_list l_malloc;
 
 void *ft_malloc(size_t size);
 void *ft_realloc(void *ptr, size_t size);
