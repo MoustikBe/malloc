@@ -310,7 +310,6 @@ void *ft_realloc(void *ptr, size_t size)
 
 void *ft_malloc(size_t size)
 {   
-    void *zone;
     if(!size)
         return(NULL);
 
