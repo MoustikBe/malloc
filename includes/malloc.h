@@ -11,22 +11,30 @@
 
 typedef struct block
 {
-    size_t  bytes;
-    bool    free;
-    struct block   *next;
+    size_t			bytes;
+    bool			free;
+    struct block	*next;
 } block;
 
 typedef struct malloc_list
 {
-    block *tiny_head;
-    block *small_head;
-    block *large_head;
+    block	*tiny_head;
+    block	*small_head;
+    block	*large_head;
 } malloc_list;
 
 extern malloc_list l_malloc;
 
-void *ft_malloc(size_t size);
-void *ft_realloc(void *ptr, size_t size);
-void ft_free(void  *pointer);
+/* MALLOC */
+bool	extend_memory(block **_block, int type);
+void	*ft_malloc(size_t size);
+void	*prepare_list(block **_block, size_t size, int type);
+void	*large_list(size_t size);
+void	*give_addr(block **_block, size_t size, int type);
+block	*create_list(void *zone, int type);
+/* REALLOC */
+void	*ft_realloc(void *ptr, size_t size);
+/* FREE */
+void	ft_free(void  *pointer);
 
 #endif

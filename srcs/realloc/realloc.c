@@ -6,11 +6,18 @@
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:09:19 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/06 12:11:12 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:51:35 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/malloc.h"
+/*
+    void  *realloc(void *ptr, size_t)
+    The function take a pointer to a memory zone and a size, the size is the final size of the new allocation of memory.
+    In case of error should return NULL
+    Should verify if the memory has been allocated by our allocator and not other.
+*/
+
+#include "../../includes/malloc.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {

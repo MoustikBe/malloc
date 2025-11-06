@@ -5,7 +5,8 @@ LFLAG 	= -fsanitize=address -g3
 RM      = rm -rf
 OBJDIR  = obj
 SOURCES = main.c \
-		  srcs/malloc.c srcs/free.c srcs/realloc.c
+		  srcs/malloc/malloc.c srcs/malloc/init.c srcs/malloc/alloc.c \
+		  srcs/free/free.c srcs/realloc/realloc.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJDIR)/%.o)
 
