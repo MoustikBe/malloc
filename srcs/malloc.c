@@ -11,9 +11,6 @@ Malloc:
 */
 
 
-static block *tiny_head = NULL;
-static block *small_head = NULL;
-static block *large_head = NULL;
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -177,9 +174,9 @@ void    *large_list(size_t size)
     if(zone == MAP_FAILED)
         return (NULL);
     block *last;
-    if(large_head)
+    if(l_malloc.large_head)
     {
-        block *current = large_head;
+        block *current = l_malloc.large_head;
         while(current->next)
             current = current->next;
         last = (block *)zone;
@@ -190,11 +187,11 @@ void    *large_list(size_t size)
     }
     else 
     {
-        large_head = (block *)zone;
-        large_head->bytes = size;
-        large_head->free = false;
-        large_head->next = NULL;
-        last = large_head;
+        l_malloc.large_head = (block *)zone;
+        l_malloc.large_head->bytes = size;
+        l_malloc.large_head->free = false;
+        l_malloc.large_head->next = NULL;
+        last = l_malloc.large_head;
     }
     return((void *)((char *)last + sizeof(block)));
 }
@@ -212,11 +209,11 @@ void ft_free(void   *pointer)
 
     if(_block->bytes > SMALL_SIZE)
     {
-        if(_block == large_head)
-            large_head = large_head->next;
+        if(_block == l_malloc.large_head)
+            l_malloc.large_head = l_malloc.large_head->next;
         else 
         {
-            current = large_head;
+            current = l_malloc.large_head;
             while (current && current->next != _block)
                 current = current->next;
             if(current)
@@ -235,9 +232,9 @@ void ft_free(void   *pointer)
     }
 
     if(_block->bytes <= TINY_SIZE)
-        current = tiny_head;
+        current = l_malloc.tiny_head;
     else
-        current = small_head;
+        current = l_malloc.small_head;
 
     while (current && current->next != _block)
         current = current->next;
@@ -257,11 +254,11 @@ bool verif_in_list(void *ptr)
     for(int i = 0; i < 3; i++)
     {
         if(i == 0)
-            current = tiny_head;
+            current = l_malloc.tiny_head;
         else if(i == 1)
-            current = small_head;
+            current = l_malloc.small_head;
         else
-            current = large_head;
+            current = l_malloc.large_head;
         while(current)
         {
             if((void *)(current + 1) == ptr)
@@ -318,9 +315,9 @@ void *ft_malloc(size_t size)
         return(NULL);
 
     if(size <= TINY_SIZE)
-        return(prepare_list(&tiny_head, size, 1));
+        return(prepare_list(&l_malloc.tiny_head, size, 1));
     else if(size > TINY_SIZE && size <= SMALL_SIZE)
-        return(prepare_list(&small_head, size, 2));
+        return(prepare_list(&l_malloc.small_head, size, 2));
     else
         return(large_list(size));
 }

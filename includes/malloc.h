@@ -16,6 +16,14 @@ typedef struct block
     struct block   *next;
 } block;
 
+typedef struct malloc_list
+{
+    block *tiny_head;
+    block *small_head;
+    block *large_head;
+} malloc_list;
+
+static malloc_list l_malloc = {NULL, NULL, NULL};
 
 void *ft_malloc(size_t size);
 void *ft_realloc(void *ptr, size_t size);
