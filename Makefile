@@ -23,6 +23,7 @@ $(OBJDIR)/%.o: %.c
 	@echo "Compiled $<"
 
 $(NAME): $(OBJECTS)
+	@cd libft && make
 	@$(CC) $(LFLAGS) $(OBJECTS) -o $(NAME)
 	@echo "Created $(NAME)"
 
@@ -31,10 +32,12 @@ link:
 	@echo "Created symbolic link: $(LINK) -> $(NAME)"
 
 clean:
+	@cd libft && make clean
 	@$(RM) $(OBJDIR)
 	@echo "Object files removed"
 
 fclean: clean
+	@cd libft && make fclean
 	@$(RM) $(NAME) $(LINK)
 	@echo " Removed binary and link"
 

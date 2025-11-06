@@ -2,6 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+/* lib */
+#include "libft/libft.h"
+/* lib */
 #include "includes/malloc.h"
 
 /* LD_PRELOAD=./libft_malloc.so [program] */
@@ -21,6 +24,11 @@ static void check_memory_content(const char *msg, void *p, const char *expected,
 
 int main(void)
 {
+    /* Libft test */
+    char **new = ft_split("Hello comment ca va ?", ' ');
+    for(int i = 0; new[i]; i++)
+        printf("new -> %s\n", new[i]);
+    /* Different allocation test */
     srand((unsigned int)time(NULL));
 
     print_header("Test basique d'allocation et libération");
