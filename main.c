@@ -9,7 +9,6 @@ static void print_header(const char *title)
     printf("\n========== %s ==========\n", title);
 }
 
-// Vérifie que deux zones mémoire sont identiques
 static void check_memory_content(const char *msg, void *p, const char *expected, size_t size)
 {
     if (memcmp(p, expected, size) == 0)
@@ -82,8 +81,8 @@ int main(void)
     void *a = malloc(100);
     void *b = malloc(200);
     void *c = malloc(50);
-    free(b); // Libère un bloc au milieu
-    void *d = malloc(180); // Doit réutiliser le bloc de b si ta gestion est efficace
+    free(b);
+    void *d = malloc(180);
     if (d)
         printf("[OK] Bloc libre réutilisé (fragmentation test)\n");
     free(a);
@@ -115,9 +114,9 @@ int main(void)
     void *df = malloc(42);
     free(df);
     printf("Libération une fois : OK\n");
-    free(df); // Doit être ignoré ou provoquer une erreur gérée
+    free(df);
     printf("Tentative double free terminée\n");
-
+    show_alloc_mem();
     
     print_header("Test realloc sur pointeur invalide");
 

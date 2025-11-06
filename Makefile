@@ -12,7 +12,7 @@ RM		= rm -rf
 
 OBJDIR	= obj
 SOURCES	= srcs/malloc/malloc.c srcs/malloc/init.c srcs/malloc/alloc.c \
-		  srcs/free/free.c srcs/realloc/realloc.c
+		  srcs/free/free.c srcs/realloc/realloc.c srcs/show_alloc_mem.c
 OBJECTS	= $(SOURCES:%.c=$(OBJDIR)/%.o)
 
 all: $(NAME) link
@@ -24,19 +24,19 @@ $(OBJDIR)/%.o: %.c
 
 $(NAME): $(OBJECTS)
 	@$(CC) $(LFLAGS) $(OBJECTS) -o $(NAME)
-	@echo "✅ Created $(NAME)"
+	@echo "Created $(NAME)"
 
 link:
 	@ln -sf $(NAME) $(LINK)
-	@echo "🔗 Created symbolic link: $(LINK) -> $(NAME)"
+	@echo "Created symbolic link: $(LINK) -> $(NAME)"
 
 clean:
 	@$(RM) $(OBJDIR)
-	@echo "🧹 Object files removed"
+	@echo "Object files removed"
 
 fclean: clean
 	@$(RM) $(NAME) $(LINK)
-	@echo "🗑️  Removed binary and link"
+	@echo " Removed binary and link"
 
 re: fclean all
 
