@@ -4,6 +4,8 @@
 #include <time.h>
 #include "includes/malloc.h"
 
+/* LD_PRELOAD=./libft_malloc.so [program] */
+
 static void print_header(const char *title)
 {
     printf("\n========== %s ==========\n", title);
@@ -116,7 +118,6 @@ int main(void)
     printf("Libération une fois : OK\n");
     free(df);
     printf("Tentative double free terminée\n");
-    show_alloc_mem();
     
     print_header("Test realloc sur pointeur invalide");
 
