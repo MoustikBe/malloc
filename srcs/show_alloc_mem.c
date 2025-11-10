@@ -12,29 +12,46 @@
 
 #include "../includes/malloc.h"
 
-void    show_alloc_mem()
+void show_alloc_mem(void)
 {
     block *current;
-    
+
+    printf("TINY : %p\n", (void *)l_malloc.tiny_head);
     current = l_malloc.tiny_head;
-    for(int i = 0; current; i++)
+    while (current)
     {
-        if(!current->free)
-            printf("Memory allocated from tiny at address -> %p with %zu, number of bytes.\n", &current, current->bytes);
+        if (!current->free)
+        {
+            void *start = (void *)(current + 1);
+            void *end = (void *)((char *)(current + 1) + current->bytes);
+            printf("%p - %p : %zu bytes\n", start, end, current->bytes);
+        }
         current = current->next;
     }
+
+    printf("SMALL : %p\n", (void *)l_malloc.small_head);
     current = l_malloc.small_head;
-    for(int i = 0; current; i++)
+    while (current)
     {
-        if(!current->free)
-            printf("Memory allocated from small at address -> %p with %zu, number of bytes.\n", &current, current->bytes);
+        if (!current->free)
+        {
+            void *start = (void *)(current + 1);
+            void *end = (void *)((char *)(current + 1) + current->bytes);
+            printf("%p - %p : %zu bytes\n", start, end, current->bytes);
+        }
         current = current->next;
     }
+
+    printf("LARGE : %p\n", (void *)l_malloc.large_head);
     current = l_malloc.large_head;
-    for(int i = 0; current; i++)
+    while (current)
     {
-        if(!current->free)
-            printf("Memory allocated from large at address -> %p with %zu, number of bytes.\n", &current, current->bytes);
+        if (!current->free)
+        {
+            void *start = (void *)(current + 1);
+            void *end = (void *)((char *)(current + 1) + current->bytes);
+            printf("%p - %p : %zu bytes\n", start, end, current->bytes);
+        }
         current = current->next;
     }
 }

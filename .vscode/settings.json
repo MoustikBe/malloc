@@ -4,6 +4,7 @@
         "mman.h": "c",
         "malloc.h": "c",
         "free.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "initializer_list": "c"
     }
 }

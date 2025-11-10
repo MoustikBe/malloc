@@ -25,6 +25,8 @@ typedef struct malloc_list
 
 extern malloc_list l_malloc;
 
+/* SHOW_MEM */
+void    show_alloc_mem(void);
 /* MALLOC */
 bool	extend_memory(block **_block, int type);
 void	*malloc(size_t size);
