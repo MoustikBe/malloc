@@ -1,6 +1,8 @@
 #ifndef MALLOC_H
 # define MALLOC_H
 
+#include "main.h"
+
 static inline size_t get_page_size(void)
 {
     return( sysconf(_SC_PAGESIZE));
@@ -11,8 +13,6 @@ static inline size_t get_page_size(void)
 
 #define TINY_ZONE (TINY_SIZE + sizeof(block)) * 100
 #define SMALL_ZONE (SMALL_SIZE + sizeof(block)) * 100
-
-#include "main.h"
 
 typedef struct block
 {
