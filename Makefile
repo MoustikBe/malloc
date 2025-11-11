@@ -15,6 +15,9 @@ SOURCES	= srcs/malloc/malloc.c srcs/malloc/init.c srcs/malloc/alloc.c \
 		  srcs/free/free.c srcs/realloc/realloc.c srcs/show_alloc_mem.c
 OBJECTS	= $(SOURCES:%.c=$(OBJDIR)/%.o)
 
+RED=\033[0;31m
+GREEN=\033[0;32m
+
 all: $(NAME) link
 
 $(OBJDIR)/%.o: %.c
@@ -41,6 +44,16 @@ fclean: clean
 	@$(RM) $(NAME) $(LINK)
 	@echo " Removed binary and link"
 
+test:
+	@set -e ; \
+	cc main.c libft/libft.a -o prog || { echo "$(RED)[ERROR] Compilation failed$(RESET)"; exit 1; } ; \
+	LD_PRELOAD=./libft_malloc.so ./prog || { echo "$(RED)[ERROR] ./prog$(RESET)"; exit 1; } ; \
+	LD_PRELOAD=./libft_malloc.so ls || { echo "$(RED)[ERROR] ls$(RESET)"; exit 1; } ; \
+	LD_PRELOAD=./libft_malloc.so echo HelloWorld || { echo "$(RED)[ERROR] echo HelloWorld$(RESET)"; exit 1; } ; \
+	LD_PRELOAD=./libft_malloc.so cat main.c || { echo "$(RED)[ERROR] cat main.c$(RESET)"; exit 1; } ; \
+	rm -rf prog
+	@echo "\n\n$(GREEN)[OK]"
+
 re: fclean all
 
-.PHONY: all clean fclean re link
+.PHONY: all clean fclean re link test

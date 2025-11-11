@@ -10,6 +10,7 @@
         "stdio.h": "c",
         "stddef.h": "c",
         "unistd.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "struct_iovec.h": "c"
     }
 }
