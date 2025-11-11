@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:09:25 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:32:58 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:52 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	ft_isprint(int c)
 int main(void)
 {
 	int result = ft_isprint('a');
-	printf("%d\n", result);
+	ft_printf("%d\n", result);
 }
 */

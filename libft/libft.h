@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <limits.h>
 // ---------------- // 
 // Biblio qui serve pour la verif // 
 # include <stdlib.h>
@@ -80,4 +82,14 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstadd_back(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
 // ----- PART B ----- //
+// ----- ft_printf ----- //
+int			ft_printf(const char *str, ...);
+void		ft_putchar(int s, int *count_2);
+void		ft_putstr(char *s, int *count_2);
+void		ft_putnbr(int nbr, int *count_2);
+void		ft_unsigned(unsigned int nbr, int *count_2);
+void		ft_hexadecimal(unsigned int nbr, char *hexa, int *count_2);
+void		ft_ptr_hexa(size_t nbr, char *hexa, int *count_2);
+void		ft_ptr(size_t num, int *count_2);
+// ----- ft_printf ----- //
 #endif

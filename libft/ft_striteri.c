@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 21:39:19 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 21:32:23 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:07 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 int main(void)
 {
     char input[] = "Bonjour";
-    printf("Avant : %s\n", input);
+    ft_printf("Avant : %s\n", input);
     ft_striteri(input, ft_exemple);
-    printf("Après : %s\n", input); 
+    ft_printf("Après : %s\n", input); 
 }
 
 static void ft_exemple(unsigned int index, char *character)

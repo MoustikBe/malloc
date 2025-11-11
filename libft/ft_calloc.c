@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:44:59 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/02/01 16:24:14 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:50 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_calloc(size_t count, size_t size)
 /*
 int main() 
 {
-    printf("%p\n", ft_calloc(SIZE_MAX, SIZE_MAX));
-    printf("%p\n", calloc(SIZE_MAX, SIZE_MAX));
+    ft_printf("%p\n", ft_calloc(SIZE_MAX, SIZE_MAX));
+    ft_printf("%p\n", calloc(SIZE_MAX, SIZE_MAX));
 }
 */

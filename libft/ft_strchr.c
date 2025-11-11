@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:37:23 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:20:52 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:06 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(void)
 	const char st1[] = "";
 	//char str2 = *ft_strchr(str1, 'a');
 	char st2 = *strchr(st1, 'a');
-	//printf("%c\n", str2);
-	printf("%c\n", st2);
+	//ft_printf("%c\n", str2);
+	ft_printf("%c\n", st2);
 }
 */

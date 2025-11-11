@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:23:37 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:32:49 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:53 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(void)
     t_list *current = lst;
     while (current)
     {
-        printf("%s\n", (char *)current->content);
+        ft_printf("%s\n", (char *)current->content);
         current = current->next;
     }
     return 0;

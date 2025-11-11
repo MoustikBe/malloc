@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:36:21 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:20:05 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:13 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		main(void)
 
 	str = "Bonjour";
 	to_find = "jour";
-	printf("%s\n", ft_strnstr(str, to_find, 10));
-	printf("%s\n", strnstr(str, to_find, 10));
+	ft_printf("%s\n", ft_strnstr(str, to_find, 10));
+	ft_printf("%s\n", strnstr(str, to_find, 10));
 }
 */

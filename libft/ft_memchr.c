@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:13:47 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:46:57 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:58 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main()
     char *result = memchr(str, 'o', strlen(str));
 	char *result2 = ft_memchr(str, 'o', strlen(str));
 
-   	printf("%s\n", (char *)result);
-    printf("%s\n", (char *)result); 
+   	ft_printf("%s\n", (char *)result);
+    ft_printf("%s\n", (char *)result); 
 }
 */

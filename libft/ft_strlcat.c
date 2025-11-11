@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:11:59 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:08:17 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:07 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int main(void)
 
 	ft_strlcat(dst, src, 1);
 	strlcat(dst1, src1, 1); 
-	printf("%s\n", dst);
-	printf("%s\n", dst1);
-	printf("%d\n", reuslt);
-	printf("%d\n", result2);
+	ft_printf("%s\n", dst);
+	ft_printf("%s\n", dst1);
+	ft_printf("%d\n", reuslt);
+	ft_printf("%d\n", result2);
 }
 */

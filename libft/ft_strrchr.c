@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 19:50:50 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:22:31 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:14 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(void)
 	const char st1[] = "bonjour";
 	char str2 = *ft_strrchr(str1, 'j');
 	char st2 = *strrchr(st1, 'j');
-	printf("%c\n", str2);
-	printf("%c\n", st2);
+	ft_printf("%c\n", str2);
+	ft_printf("%c\n", st2);
 }
 */

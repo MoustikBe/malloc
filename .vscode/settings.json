@@ -5,6 +5,11 @@
         "malloc.h": "c",
         "free.h": "c",
         "stdbool.h": "c",
-        "initializer_list": "c"
+        "initializer_list": "c",
+        "stdarg.h": "c",
+        "stdio.h": "c",
+        "stddef.h": "c",
+        "unistd.h": "c",
+        "libft.h": "c"
     }
 }

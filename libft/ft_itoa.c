@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 20:43:33 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 21:26:34 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:52 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ char	*ft_itoa(int n)
 int main ()
 {
 	char *result = ft_itoa(-12545);
-	printf("%s\n", result);
+	ft_printf("%s\n", result);
 }
 */

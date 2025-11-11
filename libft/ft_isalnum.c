@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:41:09 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:27:49 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:50 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int main(void)
 {
 	int result;
 	result = ft_isalnum('\001');
-	printf("%d\n", result); 
+	ft_printf("%d\n", result); 
 }
 */

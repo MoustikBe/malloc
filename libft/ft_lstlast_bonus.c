@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:52:56 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:33:39 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:54 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int main(void)
 	lst4->next = NULL;
 	t_list *test = ft_lstlast(lst);
 	
-	printf("%s\n", lst->content);
-	printf("%s\n", lst2->content);
-	printf("%s\n", lst3->content);
-	printf("%s\n", lst4->content);
-	printf("%s\n", test->content);
+	ft_printf("%s\n", lst->content);
+	ft_printf("%s\n", lst2->content);
+	ft_printf("%s\n", lst3->content);
+	ft_printf("%s\n", lst4->content);
+	ft_printf("%s\n", test->content);
 }
 */

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:28:58 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/11 10:02:56 by misaac-c         ###   ########.fr       */
+/*   Created: 2024/02/24 18:10:33 by misaac-c          #+#    #+#             */
+/*   Updated: 2025/11/11 10:01:55 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_putstr(char *s, int *count_2)
 {
-	t_list	*new;
+	int	i;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	i = 0;
+	if (s == NULL)
+	{
+		ft_putstr("(null)", count_2);
+		return ;
+	}
+	while (s[i])
+		ft_putchar((int)s[i++], count_2);
 }
-
-/*
-int main(void)
-{
-	char *contenu = "Bonjour";
-	t_list *result = ft_lstnew(contenu);
-	ft_printf("%s\n", result->content);
-}
-*/

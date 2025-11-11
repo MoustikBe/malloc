@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 19:20:26 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:38:04 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:58 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main (void)
 	char d[5]  = "EFGH";
 	ft_memcpy(a, c, 3);
 	memcpy(b, d, 3);
-	printf("%s\n", c);
-	printf("%s\n", d);
+	ft_printf("%s\n", c);
+	ft_printf("%s\n", d);
 }
 */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 20:58:23 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/02/13 14:52:35 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:03 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int main(void)
     
     if (result == NULL) 
 	{
-        printf("Erreur");
+        ft_printf("Erreur");
         return 1;
     }
 
@@ -107,7 +107,7 @@ int main(void)
     int i = 0;
     while (result[i] != NULL) 
 	{
-        printf("Mot %d : %s\n", i + 1, result[i]);
+        ft_printf("Mot %d : %s\n", i + 1, result[i]);
         i++;
     }
 

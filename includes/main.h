@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include <limits.h>
 
+#include "../libft/libft.h"
 #include "malloc.h"
 // -- Library -- //
 

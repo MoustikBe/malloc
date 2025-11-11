@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:05:24 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:53:19 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:59 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(void)
     char c[8] = "aaaaaaa";
     char q[5] = "dddd";
    	ft_memmove(c, q, 3);
-    printf("%s \n", c);
+    ft_printf("%s \n", c);
     return (0);
 }
 */

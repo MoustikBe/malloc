@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:54:53 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:50:14 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:58 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int main(void)
 
 	int result = ft_memcmp(str1, str2, 50);
 	int result2 = memcmp(st1, st2, 50);
-	printf("%d\n", result);
-	printf("%d\n", result2);
+	ft_printf("%d\n", result);
+	ft_printf("%d\n", result2);
 
 }
 */

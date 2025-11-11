@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 20:43:33 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:27:37 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:15 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int main(void)
 {
 	const char *str1 = "Bonjour ";
 	char *new_char = ft_substr(str1, 2, 5);
-	printf("%s\n", new_char);
+	ft_printf("%s\n", new_char);
 }
 */

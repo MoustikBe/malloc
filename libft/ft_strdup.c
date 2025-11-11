@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:16:18 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:04:10 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:06 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ char	*ft_strdup(char *src)
 int main(void)
 {
 	char test[] = "test"; 
-	printf("%s\n", ft_strdup(test));
+	ft_printf("%s\n", ft_strdup(test));
 }
 */

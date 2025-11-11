@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:28:58 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/11 10:02:56 by misaac-c         ###   ########.fr       */
+/*   Created: 2024/02/24 18:10:13 by misaac-c          #+#    #+#             */
+/*   Updated: 2025/11/11 10:01:44 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_putchar(int s, int *count_2)
 {
-	t_list	*new;
+	int	tchek;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	tchek = write(1, &s, 1);
+	if (tchek < 0)
+	{
+		(*count_2) = -1;
+		return ;
+	}
+	(*count_2)++;
 }
-
-/*
-int main(void)
-{
-	char *contenu = "Bonjour";
-	t_list *result = ft_lstnew(contenu);
-	ft_printf("%s\n", result->content);
-}
-*/

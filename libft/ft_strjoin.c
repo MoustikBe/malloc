@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:08:38 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 21:36:24 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:07 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int main(void)
 	const char *str1 = "Bonjour ";
 	const char *str2 = "Tranquille ? ";
 	char *new_char = ft_strjoin(str1, str2);
-	printf("%s\n", new_char);
+	ft_printf("%s\n", new_char);
 }
 */

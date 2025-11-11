@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:48:50 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:54:45 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:59 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(void)
 	char d[5]  = "AAAA";
 	ft_memset(c+2, 'B', 2);
 	memset(d+2, 'B', 2);
-	printf("%s\n", c);
-	printf("%s\n", d);
+	ft_printf("%s\n", c);
+	ft_printf("%s\n", d);
 }
 */

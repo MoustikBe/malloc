@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:47:53 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:34:14 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:56 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int main(void)
 	lst->content = "resultat : 13";
 	lst->next = NULL;
 	create_lst(lst);
-	printf("%d\n", ft_lstsize(lst)); 
-	printf("%s\n", lst->content); 
+	ft_printf("%d\n", ft_lstsize(lst)); 
+	ft_printf("%s\n", lst->content); 
 }
 */

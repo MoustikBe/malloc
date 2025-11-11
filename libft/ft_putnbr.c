@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:28:58 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/11 10:02:56 by misaac-c         ###   ########.fr       */
+/*   Created: 2024/02/24 18:10:23 by misaac-c          #+#    #+#             */
+/*   Updated: 2025/11/11 10:01:52 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_putnbr(int nbr, int *count_2)
 {
-	t_list	*new;
+	unsigned int	n;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (nbr < 0)
+	{
+		ft_putchar('-', count_2);
+		n = -nbr;
+	}
+	else
+		n = nbr;
+	if (n > 9)
+	{
+		ft_putnbr(n / 10, count_2);
+		ft_putchar(n % 10 + '0', count_2);
+	}
+	else
+		ft_putchar(n + '0', count_2);
 }
-
-/*
-int main(void)
-{
-	char *contenu = "Bonjour";
-	t_list *result = ft_lstnew(contenu);
-	ft_printf("%s\n", result->content);
-}
-*/

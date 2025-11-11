@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:45:48 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/02/20 15:33:23 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:54 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 /*
 static void ft_exemple(void *str)
 {
-	printf("fonction exemple\n");
-	printf("%s\n", (char *)str);
+	ft_printf("fonction exemple\n");
+	ft_printf("%s\n", (char *)str);
 }
 
 int main(void)

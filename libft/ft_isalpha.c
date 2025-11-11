@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:35:07 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 19:26:15 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:02:51 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(void)
 	int result; 
 	alp = 'Q';
 	result = ft_isalpha(alp);
-	printf("%d\n", result);
+	ft_printf("%d\n", result);
 
 }
 */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:21:11 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 20:26:15 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:14 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ int main(void)
 	const char *str1 = "Bonjour";
 	const char *str2 = "Bonjr";
 	char *new_char = ft_strtrim(str1, str2);
-	printf("%s\n", new_char);
+	ft_printf("%s\n", new_char);
 }
 */

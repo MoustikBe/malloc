@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaac-c <misaac-c@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:27:03 by misaac-c          #+#    #+#             */
-/*   Updated: 2024/01/30 21:28:14 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:03:12 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 int main(void)
 {
 	char *result = ft_strmapi("Bonjour", ft_exemple);
-	printf("%s\n", result);
+	ft_printf("%s\n", result);
 }
 */
