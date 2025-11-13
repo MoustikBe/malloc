@@ -27,7 +27,7 @@ $(OBJDIR)/%.o: %.c
 
 $(NAME): $(OBJECTS)
 	@cd libft && make
-	@$(CC) $(LFLAGS) $(OBJECTS) -o $(NAME)
+	@$(CC) $(LFLAGS) $(OBJECTS) libft/libft.a -o $(NAME)
 	@echo "Created $(NAME)"
 
 link:
