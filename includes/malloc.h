@@ -8,8 +8,8 @@ static inline size_t get_page_size(void)
     return( sysconf(_SC_PAGESIZE));
 }
 
-#define TINY_SIZE (get_page_size() / 2)
-#define SMALL_SIZE (get_page_size() * 2)
+#define TINY_SIZE (get_page_size() * 4)
+#define SMALL_SIZE (get_page_size() * 32)
 
 #define TINY_ZONE (TINY_SIZE + sizeof(block)) * 100
 #define SMALL_ZONE (SMALL_SIZE + sizeof(block)) * 100

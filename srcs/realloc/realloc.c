@@ -6,7 +6,7 @@
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:09:19 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/06 13:06:17 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:11:10 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void *realloc(void *ptr, size_t size)
         return(NULL);
     else if(size == 0)
         return(free(ptr), NULL);
-    else if(size <= _block->bytes + sizeof(block))
+    else if(size <= _block->bytes)
         return(ptr);
 
     block *next = _block->next;
@@ -84,7 +84,7 @@ void *realloc(void *ptr, size_t size)
     addr_malloc = malloc(size);
     if(!addr_malloc)
         return(NULL);
-    ft_memcpy(addr_malloc, ptr, size);
+    ft_memcpy(addr_malloc, ptr, _block->bytes);
     free(ptr);
     return(addr_malloc);
 }

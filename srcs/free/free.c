@@ -6,7 +6,7 @@
 /*   By: misaac-c <misaac-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:09:17 by misaac-c          #+#    #+#             */
-/*   Updated: 2025/11/06 13:06:34 by misaac-c         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:03:52 by misaac-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void free(void   *pointer)
 
     while (current && current->next != _block)
         current = current->next;
-    if(current && current->free)
+    if (current && current->free && (char *)current + sizeof(block) + current->bytes == (char *)_block)
     {
         current->bytes += sizeof(block) + _block->bytes;
         current->next = _block->next;
