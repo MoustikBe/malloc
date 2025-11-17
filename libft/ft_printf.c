@@ -32,6 +32,11 @@ void	ft_menu_variable(char *str, va_list *argv, int count, int *count_2)
 			"0123456789ABCDEF", count_2);
 	else if (str[count] == '%')
 		ft_putchar('%', count_2);
+	else if ((int)ft_strlen(str) > (count + 1))
+	{
+		if(str[count] == 'z' && str[count + 1] == 'u')
+			ft_unsigned(va_arg(*argv, unsigned int), count_2);
+	}
 }
 
 int	ft_printf(const char *str, ...)
