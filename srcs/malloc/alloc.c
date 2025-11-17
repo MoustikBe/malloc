@@ -13,51 +13,34 @@
 #include "../../includes/malloc.h"
 
 /* Just a function to improved the readability of the code (extension of extend_memory). */
-void alloc_extension(block **_block, int type, void *zone, size_t nb_block)
+void alloc_extension(block **_block, int type, void *zone)
 {
     block *current = *_block;
-    
     while (current->next)
         current = current->next;
-    
-    block *new = (block *) zone;
+
+    block *new = (block *)zone;
+    size_t zone_size;
+    if (type == 1)
+        zone_size = TINY_ZONE;
+    else
+        zone_size = SMALL_ZONE;
+
+    new->bytes = zone_size - sizeof(block);
+    new->free = true;
+    new->next = NULL;
     current->next = new;
-    for(size_t i = 0; i < nb_block ; i++)
-    {
-        if(type == 1)
-            new->bytes = TINY_SIZE;
-        else
-            new->bytes = SMALL_SIZE;
-        new->free = true;
-        if(i < nb_block - 1)
-        {
-            if(type == 1)    
-                new->next = (block *)((char *)new + sizeof(block) + TINY_SIZE);
-            else 
-                new->next = (block *)((char *)new + sizeof(block) + SMALL_SIZE);
-        }
-        else 
-            new->next = NULL; 
-        new = new->next;
-    }
 }
 
 /* Function that extend the memory if give_addr function dosen't find enought memory in the list. */
 bool extend_memory(block **_block, int type)
 {
     void *zone;
-    size_t nb_block;
 
     if(type == 1)
-    {
         zone = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-        nb_block = TINY_ZONE / (TINY_SIZE + sizeof(block));
-    }
     else
-    {
         zone = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-        nb_block = SMALL_ZONE / (SMALL_SIZE + sizeof(block));
-    }
     if(zone == MAP_FAILED)
         return false;
     if(!*_block) 
@@ -65,7 +48,7 @@ bool extend_memory(block **_block, int type)
         *_block = create_list(zone, type);
         return (true);
     }
-    alloc_extension(_block, type, zone, nb_block);
+    alloc_extension(_block, type, zone);
     return(true);
 }
 

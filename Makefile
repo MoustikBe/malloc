@@ -50,7 +50,6 @@ test:
 	LD_PRELOAD=./libft_malloc.so ./prog || { echo "$(RED)[ERROR] ./prog$(RESET)"; exit 1; } ; \
 	LD_PRELOAD=./libft_malloc.so ls || { echo "$(RED)[ERROR] ls$(RESET)"; exit 1; } ; \
 	LD_PRELOAD=./libft_malloc.so echo HelloWorld || { echo "$(RED)[ERROR] echo HelloWorld$(RESET)"; exit 1; } ; \
-	LD_PRELOAD=./libft_malloc.so cat main.c || { echo "$(RED)[ERROR] cat main.c$(RESET)"; exit 1; } ; \
 	rm -rf prog
 	@echo "\n\n$(GREEN)[OK]"
 

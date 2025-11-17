@@ -15,34 +15,17 @@
 /* Function that create the list, in case is the first time malloc is used. */
 block   *create_list(void *zone, int type)
 {
-    block *head = (block *) zone;
-    block *current = head;
-    size_t nb_block;
+    block *head = (block *)zone;
+    size_t zone_size;
 
-    if(type == 1)
-        nb_block = TINY_ZONE / (TINY_SIZE + sizeof(block));
+    if (type == 1)
+        zone_size = TINY_ZONE;
     else
-        nb_block = SMALL_ZONE / (SMALL_SIZE + sizeof(block));
-    for(size_t i = 0; i < nb_block ; i++)
-    {
-        if(type == 1)
-            current->bytes = TINY_SIZE;
-        else
-            current->bytes = SMALL_SIZE;
-        current->free = true;
-        
-        if(i < nb_block - 1)
-        {
-            if(type == 1)
-                current->next = (block *)((char *)current + sizeof(block) + TINY_SIZE);
-            else
-                current->next = (block *)((char *)current + sizeof(block) + SMALL_SIZE);
-        }
-        else 
-            current->next = NULL; 
-        current = current->next;
-    }
-    return(head);
+        zone_size = SMALL_ZONE;
+    head->bytes = zone_size - sizeof(block);
+    head->free = true;
+    head->next = NULL;
+    return (head);
 }
 
 /* Function that ask the system to give us [ZONE] of memory, [ZONE] will be used after to create the list that match with [SIZE] requested by malloc. */
