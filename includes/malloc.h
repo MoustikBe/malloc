@@ -8,6 +8,9 @@ static inline size_t get_page_size(void)
     return( sysconf(_SC_PAGESIZE));
 }
 
+#define ALIGNMENT (2 * sizeof(size_t))
+#define ALIGN_UP(x) (((x) + ALIGNMENT - 1) & ~(ALIGNMENT - 1))
+
 #define TINY_SIZE (get_page_size() * 4)
 #define SMALL_SIZE (get_page_size() * 32)
 
@@ -19,6 +22,7 @@ typedef struct block
     size_t			bytes;
     bool			free;
     struct block	*next;
+    size_t          _padding;
 } block;
 
 typedef struct malloc_list
